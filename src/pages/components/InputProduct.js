@@ -10,10 +10,15 @@ const InputProduct = ({handleClick, text}) => {
   const [estoqueProduto, setEstoqueProduto] = useState("")
   const [imagem, setImagem] = useState("")
 
+  //URL IMAGE
+  
+
+
   //error
   const [error, setError] =useState("");
 
   const url = "https://windelweb.windel.com.br:3000/teste-front"
+
 
   const produto = {
     nome: descProduto,
@@ -28,7 +33,7 @@ const InputProduct = ({handleClick, text}) => {
   const handleClickForm = () => {
     setError("")
     console.log(produto)
-    console.log(produto.nome.length)
+    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
     if(produto.nome.length == 0 || produto.nome.length >= 40){
       return setError("O campo deve Descrição do Produto deve conter entre 1 a 40 caracteres")
     } 
@@ -41,6 +46,10 @@ const InputProduct = ({handleClick, text}) => {
     if(produto.estoque.length == 0 || isNaN(produto.estoque)){
       return setError("O campo Estoque não deve ir vazio")
     }
+    if(produto.imagemProduto !== "" && !(urlRegex).test(produto.imagem)){
+      return setError("Por favor, informe uma URL válida ou deixe o campo vazio.")
+    }
+
 
     handleClick({produto})
     
