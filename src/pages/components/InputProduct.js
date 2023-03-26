@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import axios from 'axios'
 
-const InputProduct = ({produto}) => {
+
+const InputProduct = () => {
   const [descProduto, setDescProduto] = useState("")
   const [vlrVenda, setVlrVenda] = useState("")
   const [refProduto, setRefProduto] = useState("")
@@ -9,19 +11,29 @@ const InputProduct = ({produto}) => {
   const [estoqueProduto, setEstoqueProduto] = useState("")
   const [imagem, setImagem] = useState("")
 
+
+  const url = "https://windelweb.windel.com.br:3000/teste-front"
+
   const produto = {
-    descProduto,
-    vlrVenda,
-    refProduto,
-    un,
-    fabProduto,
-    estoqueProduto,
-    imagem
+    nome: descProduto,
+    valorVenda: parseFloat(vlrVenda),
+    referencia: refProduto,
+    unidadeMedida: un,
+    fabricante: fabProduto,
+    estoque: parseInt(estoqueProduto),
+    imagemProduto: imagem,
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(produto)
+    axios.post(url, produto)
+      .then(response => {
+        console.log(response.data)
+        this.setState(produto)
+
+      })
+      .catch(error => console.log(error))
+
   }
 
   return (
@@ -82,7 +94,7 @@ const InputProduct = ({produto}) => {
             onChange={(e) => setImagem(e.target.value)}
             value={imagem} />
         </label>
-        <input type="submit" value="Criar"/>
+        <input type="submit" value="Criar" />
       </form>
     </div>
   )
