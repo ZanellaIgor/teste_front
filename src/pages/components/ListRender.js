@@ -13,10 +13,11 @@ import { AiFillEdit } from 'react-icons/ai'
 const ListRender = () => {
     const [produtos, setProdutos] = useState([]);
     const baseURL = "https://windelweb.windel.com.br:3000/teste-front"
+    
     useEffect(() => {
         axios.get(baseURL)
             .then((response) => {
-                console.log(response);
+                
                 setProdutos(response.data)
             })
             .catch((error) => {

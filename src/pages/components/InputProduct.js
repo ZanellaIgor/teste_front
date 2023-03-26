@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import axios from 'axios'
+import styles from "./InputProduct.module.css"
 
-
-const InputProduct = () => {
+const InputProduct = ({handleClick, text}) => {
   const [descProduto, setDescProduto] = useState("")
   const [vlrVenda, setVlrVenda] = useState("")
   const [refProduto, setRefProduto] = useState("")
@@ -11,6 +10,8 @@ const InputProduct = () => {
   const [estoqueProduto, setEstoqueProduto] = useState("")
   const [imagem, setImagem] = useState("")
 
+  //error
+  const [error, setError] =useState("");
 
   const url = "https://windelweb.windel.com.br:3000/teste-front"
 
@@ -24,21 +25,38 @@ const InputProduct = () => {
     imagemProduto: imagem,
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post(url, produto)
-      .then(response => {
-        console.log(response.data)
-        this.setState(produto)
+  const handleClickForm = () => {
+    setError("")
+    console.log(produto)
+    console.log(produto.nome.length)
+    if(produto.nome.length == 0 || produto.nome.length >= 40){
+      return setError("O campo deve Descrição do Produto deve conter entre 1 a 40 caracteres")
+    } 
+    if(produto.valorVenda.length == 0 || isNaN(produto.valorVenda)){
+      return setError("Favor informar o Valor de Venda")
+    }
+    if(produto.unidadeMedida.length == 0){
+      return setError("O campo Unidade de medida não ser cadastrado em branco")
+    }
+    if(produto.estoque.length == 0 || isNaN(produto.estoque)){
+      return setError("O campo Estoque não deve ir vazio")
+    }
 
-      })
-      .catch(error => console.log(error))
+    handleClick({produto})
+    
+    // axios.post(url, produto)
+    //   .then(response => {
+    //     console.log(produto)
+    //     console.log(response)
+
+    //   })
+    //   .catch(error => console.log(error))
 
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label>
           Descrição do Produto:
           <input
@@ -90,11 +108,13 @@ const InputProduct = () => {
         </label>
         <label>Informe o Link da Imagem:
           <input
-            type="text"
+            type="url"
             onChange={(e) => setImagem(e.target.value)}
             value={imagem} />
         </label>
-        <input type="submit" value="Criar" />
+        {error && <p className={styles.error}>{error}</p>}
+        <button type='button' onClick={handleClickForm}>{text}</button>
+        
       </form>
     </div>
   )
