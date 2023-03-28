@@ -1,20 +1,15 @@
 
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import InputProduct from './pages/components/InputProduct';
-import ListRender from './pages/components/ListRender';
-import CreateProduct from './pages/CreateProduct/CreateProduct';
-import EditProduct from './pages/EditProduct/EditProduct';
+import ProductRoutes from './pages/Routes/ProductRoutes';
 
 //hook
-
-
 function App() {
   return (
     <div className="App">
-      
-      <CreateProduct/>
-      <EditProduct/>
-      <ListRender/>
+     
+      <ProductRoutes />
+
     </div>
   );
 }
