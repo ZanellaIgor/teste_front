@@ -15,9 +15,7 @@ import { AiFillEdit } from 'react-icons/ai'
 
 
 //Componentes
-import EditProduct from "../components/EditProduct";
-import FilterProduct from "../components/FilterProduct";
-import CreateProduct from "../components/CreateProduct";
+
 import InputProduct from "../components/InputProduct";
 
 const ListRender = () => {
@@ -46,17 +44,17 @@ const ListRender = () => {
         }
     }
 
+    function handleEdit() {
+            
+    }
     //Alterar produto
     function alterarProduto(produto) {
-        setId(produto.id)
-      
-
-       
+        handleEdit(produto)
     }
 
     return (
         <>
-            <InputProduct text="Edit" />
+            <InputProduct text="Edit" sets={handleEdit}/>
             <table className={styles.container_tabela}>
                 <thead className={styles.cabecalho_tabela}>
                     <tr>

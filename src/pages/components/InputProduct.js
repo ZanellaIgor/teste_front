@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styles from "./InputProduct.module.css"
 
-const InputProduct = ({ handleClick, text }) => {
+const InputProduct = ({ handleClick, text,sets }) => {
 
   const [descProduto, setDescProduto] = useState("")
   const [vlrVenda, setVlrVenda] = useState("")
@@ -16,6 +16,18 @@ const InputProduct = ({ handleClick, text }) => {
   //error
   const [error, setError] = useState("");
 
+  function sets(produto) {
+    setDescProduto(produto.nome);
+    setVlrVenda();
+    setRefProduto();
+    setUn();
+    setFabProduto();
+    setEstoqueProduto();
+    setImagem();
+    setId();
+    setCreatedAt();
+    setError();
+  }
   const produto = {
     id,
     createdAt,
@@ -31,6 +43,7 @@ const InputProduct = ({ handleClick, text }) => {
   const handleClickForm = () => {
     setError("")
     console.log(produto)
+
     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
     if (produto.nome.length == 0 || produto.nome.length >= 40) {
       return setError("O campo deve Descrição do Produto deve conter entre 1 a 40 caracteres")
@@ -48,12 +61,9 @@ const InputProduct = ({ handleClick, text }) => {
       return setError("Por favor, informe uma URL válida ou deixe o campo vazio.")
     }
 
-
     handleClick({ produto })
 
   }
-
-
 
   return (
     <div>

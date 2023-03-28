@@ -11,8 +11,8 @@ const CreateProduct = () => {
         const {id, createdAt, ...novoProduto} = produto
         axios.post(url, novoProduto)
             .then(response => {
-                console.log(produto)
-                console.log(response)
+                console.log(novoProduto)
+                console.log(novoProduto)
             })
             .catch(error => console.log(error))
     }
