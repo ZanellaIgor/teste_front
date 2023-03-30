@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import InputProduct from '../components/InputProduct'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Heading } from '@chakra-ui/react';
 
 
 const EditProduct = () => {
@@ -24,14 +25,15 @@ const EditProduct = () => {
     }, [id])
 
     return (
-        <div>
-            <h3>Edite o Produto:</h3>
+        <>
+           
+            <Heading>Edite o Produto:</Heading>
             <InputProduct
                 text={text}
                 evento={handleClick} 
                 
                />
-        </div>
+        </>
     )
 }
 

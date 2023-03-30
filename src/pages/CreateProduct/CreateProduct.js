@@ -1,27 +1,32 @@
 import React from 'react'
 import axios from 'axios'
 import InputProduct from '../components/InputProduct'
+import { Heading } from '@chakra-ui/react'
 
 const CreateProduct = () => {
     const text = "Enviar"
-    
-    function handleClickCreate({produto}){
+
+    function handleClickCreate({ produto }) {
         console.log(produto)
         // axios.post(url, produto)
-    //   .then(response => {
-    //     console.log(produto)
-    //     console.log(response)
-    //   })
-    //   .catch(error => console.log(error))
+        //   .then(response => {
+        //     console.log(produto)
+        //     console.log(response)
+        //   })
+        //   .catch(error => console.log(error))
     }
     return (
+        <>
 
-        <div>
-            <h3>Crie seu produto:</h3>
-            <InputProduct 
-            text={text} 
-            handleClick={handleClickCreate}/>
-        </div>
+            <Heading>Crie seu produto:</Heading>
+            <InputProduct
+                text={text}
+                handleClick={handleClickCreate}
+
+            />
+        </>
+
+
     )
 }
 
