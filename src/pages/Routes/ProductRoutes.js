@@ -1,6 +1,9 @@
 import React from 'react'
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Header } from '../components/Header';
+
+
 import Home from '../components/Home';
 import CreateProduct from '../CreateProduct/CreateProduct';
 import EditProduct from '../EditProduct/EditProduct';
@@ -10,6 +13,8 @@ const ProductRoutes = () => {
 
     return (
         <BrowserRouter>
+            <Header />
+            
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/Produtos' element={<RenderListProduct />} />

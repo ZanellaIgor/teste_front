@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import styles from "./InputProduct.module.css"
 
-const InputProduct = ({handleClick, text}) => {
+const InputProduct = ({ handleClick, text }) => {
+
   const [descProduto, setDescProduto] = useState("")
   const [vlrVenda, setVlrVenda] = useState("")
   const [refProduto, setRefProduto] = useState("")
@@ -11,7 +12,7 @@ const InputProduct = ({handleClick, text}) => {
   const [imagem, setImagem] = useState("")
 
   //error
-  const [error, setError] =useState("");
+  const [error, setError] = useState("");
 
   const url = "https://windelweb.windel.com.br:3000/teste-front"
 
@@ -24,26 +25,27 @@ const InputProduct = ({handleClick, text}) => {
     estoque: parseInt(estoqueProduto),
     imagemProduto: imagem,
   }
+  
 
   const handleClickForm = () => {
     setError("")
     console.log(produto)
     console.log(produto.nome.length)
-    if(produto.nome.length == 0 || produto.nome.length >= 40){
+    if (produto.nome.length == 0 || produto.nome.length >= 40) {
       return setError("O campo deve Descrição do Produto deve conter entre 1 a 40 caracteres")
-    } 
-    if(produto.valorVenda.length == 0 || isNaN(produto.valorVenda)){
+    }
+    if (produto.valorVenda.length == 0 || isNaN(produto.valorVenda)) {
       return setError("Favor informar o Valor de Venda")
     }
-    if(produto.unidadeMedida.length == 0){
+    if (produto.unidadeMedida.length == 0) {
       return setError("O campo Unidade de medida não ser cadastrado em branco")
     }
-    if(produto.estoque.length == 0 || isNaN(produto.estoque)){
+    if (produto.estoque.length == 0 || isNaN(produto.estoque)) {
       return setError("O campo Estoque não deve ir vazio")
     }
 
-    handleClick({produto})
-    
+    handleClick({ produto })
+
     // axios.post(url, produto)
     //   .then(response => {
     //     console.log(produto)
@@ -114,7 +116,7 @@ const InputProduct = ({handleClick, text}) => {
         </label>
         {error && <p className={styles.error}>{error}</p>}
         <button type='button' onClick={handleClickForm}>{text}</button>
-        
+
       </form>
     </div>
   )
