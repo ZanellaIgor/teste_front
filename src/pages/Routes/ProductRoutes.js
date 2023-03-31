@@ -5,8 +5,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import About from '../components/About';
 import Footer from '../components/Footer';
 import { Header } from '../components/Header';
-
-
 import Home from '../components/Home';
 import Navbar from '../components/Navbar';
 import CreateProduct from '../CreateProduct/CreateProduct';
@@ -17,34 +15,30 @@ const ProductRoutes = () => {
 
     return (
         <BrowserRouter>
-            <Grid templateAreas={`"header header"
-                  "nav main"
-                  "nav footer"`}
-                gridTemplateRows={'25% 1fr 30px'}
-                gridTemplateColumns={'150px 1fr'}
-                h='200px'
-                gap='1'
-                color='blackAlpha.700'
-                fontWeight='bold'
+            <Grid
+                h="100vh"
+                templateRows="auto 1fr auto"
+                templateColumns="200px 1fr"
+                gap={1}
             >
-                <GridItem  pl='2' bg='orange.300' area={'header'}>
+                <GridItem rowSpan={1} colSpan={2}>
                     <Header />
                 </GridItem>
-
-                <GridItem pl='2' bg='pink.300' area={'nav'}>
+                <GridItem rowSpan={1} colSpan={1} bg = ' #B8D6FF ' border='1px solid '>
                     <Navbar />
                 </GridItem>
-
-                <GridItem pl='2' bg='green.300' area={'main'}>
+              
+               
+                <GridItem rowSpan={1} colSpan={1}>
                     <Routes>
                         <Route path='/' element={<Home />} />
-                        <Route path='/About' element={<About/>} />
+                        <Route path='/About' element={<About />} />
                         <Route path='/Produtos' element={<RenderListProduct />} />
                         <Route path='/Produtos/Criar_Produto' element={<CreateProduct />} />
                         <Route path='/Produtos/Editar_Produto/:id' element={<EditProduct />} />
                     </Routes>
                 </GridItem>
-                <GridItem pl='2' bg='blue.300' area={'footer'}>
+                <GridItem rowSpan={1} colSpan={1}>
                     <Footer />
                 </GridItem>
             </Grid>

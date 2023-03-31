@@ -8,7 +8,7 @@ import { Heading } from '@chakra-ui/react';
 const EditProduct = () => {
     const { id } = useParams();
 
-    const baseURL = "https://windelweb.windel.com.br:3000/teste-front"
+    const baseURL = "https://homologacao.windel.com.br:3000/teste-front"
     const text = "Editar"
     const handleClick = () => {
         console.log("esta no edit")

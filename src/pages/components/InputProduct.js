@@ -1,5 +1,6 @@
+import { FormLabel, Input, Box, FormControl, Button } from '@chakra-ui/react'
 import { useState } from 'react'
-import styles from "./InputProduct.module.css"
+
 
 const InputProduct = ({ handleClick, text }) => {
 
@@ -14,7 +15,7 @@ const InputProduct = ({ handleClick, text }) => {
   //error
   const [error, setError] = useState("");
 
-  const url = "https://windelweb.windel.com.br:3000/teste-front"
+  const url = "https://homologacao.windel.com.br:3000/teste-front"
 
   const produto = {
     nome: descProduto,
@@ -25,7 +26,7 @@ const InputProduct = ({ handleClick, text }) => {
     estoque: parseInt(estoqueProduto),
     imagemProduto: imagem,
   }
-  
+
 
   const handleClickForm = () => {
     setError("")
@@ -57,68 +58,82 @@ const InputProduct = ({ handleClick, text }) => {
   }
 
   return (
-    <div>
+    <Box>
       <form>
-        <label>
-          Descrição do Produto:
-          <input
-            type="text"
-            onChange={(e) => setDescProduto(e.target.value)}
-            value={descProduto}
-            required
-          />
-        </label>
-        <label>
-          Valor de Venda:
-          <input type="number"
-            step="0.01"
-            onChange={(e) => setVlrVenda(e.target.value)}
-            value={vlrVenda}
-            required
-          />
-        </label>
-        <label>
-          Referência:
-          <input
-            type="text"
-            onChange={(e) => setRefProduto(e.target.value)}
-            value={refProduto}
-          />
-        </label>
-        Unidade de Medida:
-        <input
-          type="text"
-          onChange={(e) => setUn(e.target.value)}
-          value={un}
-          required
-        />
-        <label>
+        <FormControl>
+          <FormLabel>
+            Descrição do Produto:
+            <Input
+              type="text"
+              onChange={(e) => setDescProduto(e.target.value)}
+              value={descProduto}
+              required
+            />
+          </FormLabel>
+        </FormControl>
+        <FormControl>
+          <FormLabel>
+            Valor de Venda:
+            <Input type="number"
+              step="0.01"
+              onChange={(e) => setVlrVenda(e.target.value)}
+              value={vlrVenda}
+              required
+            />
+          </FormLabel>
+        </FormControl>
+        <FormControl>
+          <FormLabel>
+            Referência:
+            <Input
+              type="text"
+              onChange={(e) => setRefProduto(e.target.value)}
+              value={refProduto}
+            />
+          </FormLabel>
+        </FormControl>
+        <FormControl>
+
+          <FormLabel>
+            Unidade de Medida:
+            <Input
+              type="text"
+              onChange={(e) => setUn(e.target.value)}
+              value={un}
+              required
+            />
+          </FormLabel>
+        </FormControl>
+        <FormLabel>
           Fabricante:
-          <input
+          <Input
             type="text"
             onChange={(e) => setFabProduto(e.target.value)}
             value={fabProduto}
           />
-        </label>
-        <label>
-          Estoque Atual:
-          <input
-            type="number"
-            onChange={(e) => setEstoqueProduto(e.target.value)}
-            value={estoqueProduto}
-          />
-        </label>
-        <label>Informe o Link da Imagem:
-          <input
-            type="url"
-            onChange={(e) => setImagem(e.target.value)}
-            value={imagem} />
-        </label>
-        {error && <p className={styles.error}>{error}</p>}
-        <button type='button' onClick={handleClickForm}>{text}</button>
-
+        </FormLabel>
+        <FormControl>
+          <FormLabel>
+            Estoque Atual:
+            <Input
+              type="number"
+              onChange={(e) => setEstoqueProduto(e.target.value)}
+              value={estoqueProduto}
+            />
+          </FormLabel>
+        </FormControl>
+        <FormControl>
+          <FormLabel>Informe o Link da Imagem:
+            <Input
+              type="url"
+              onChange={(e) => setImagem(e.target.value)}
+              value={imagem} />
+          </FormLabel>
+        </FormControl>
+        {error && <p>{error}</p>}
+        <Button type='button' onClick={handleClickForm}>{text}</Button>
       </form>
-    </div>
+    </Box>
   )
 }
 
