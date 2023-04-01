@@ -50,7 +50,7 @@ const RenderListProduct = () => {
         if (window.confirm('Tem certeza que deseja deletar este Produto?')) {
             console.log(baseURL)
             axios.delete(`${baseURL}/${id}`)
-                .Then(response => {
+                .then(response => {
                     console.log(response.data)
                 })
                 .catch(error => console.log(error))
