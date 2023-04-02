@@ -1,6 +1,5 @@
 import { Grid, GridItem } from '@chakra-ui/react';
 import React from 'react'
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import About from '../components/About';
 import Footer from '../components/Footer';

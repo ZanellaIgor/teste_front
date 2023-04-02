@@ -3,12 +3,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const InputProduct = ({ handleClick, text, alterarProduto }) => {
-
-<<<<<<< HEAD
-=======
-const InputProduct = ({ handleClick, text,sets }) => {
-
->>>>>>> 60a5287fc6fd64bd841b33e565114d5f77349696
+  
   const [descProduto, setDescProduto] = useState("")
   const [vlrVenda, setVlrVenda] = useState("")
   const [refProduto, setRefProduto] = useState("")
@@ -17,7 +12,7 @@ const InputProduct = ({ handleClick, text,sets }) => {
   const [estoqueProduto, setEstoqueProduto] = useState("")
   const [imagem, setImagem] = useState("")
 
-<<<<<<< HEAD
+
   const alterarStates = (produto) => {
     alterarProduto()
     setDescProduto(produto.nome)
@@ -33,12 +28,9 @@ const InputProduct = ({ handleClick, text,sets }) => {
   const [error, setError] = useState("");
 
   const url = "https://homologacao.windel.com.br:3000/teste-front"
-=======
+
   const [id, setId] = useState("")
   const [createdAt, setCreatedAt] = useState("");
-  //error
-  const [error, setError] = useState("");
->>>>>>> 60a5287fc6fd64bd841b33e565114d5f77349696
 
   function sets(produto) {
     setDescProduto(produto.nome);
@@ -68,12 +60,8 @@ const InputProduct = ({ handleClick, text,sets }) => {
   const handleClickForm = () => {
     setError("")
     console.log(produto)
-<<<<<<< HEAD
-    console.log(produto.nome.length)
-=======
 
     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
->>>>>>> 60a5287fc6fd64bd841b33e565114d5f77349696
     if (produto.nome.length == 0 || produto.nome.length >= 40) {
       return setError("O campo deve Descrição do Produto deve conter entre 1 a 40 caracteres")
     }
@@ -91,10 +79,6 @@ const InputProduct = ({ handleClick, text,sets }) => {
     }
 
     handleClick({ produto })
-<<<<<<< HEAD
-=======
-
->>>>>>> 60a5287fc6fd64bd841b33e565114d5f77349696
   }
 
   return (
@@ -134,7 +118,6 @@ const InputProduct = ({ handleClick, text,sets }) => {
             onChange={(e) => setRefProduto(e.target.value)}
             value={refProduto}
           />
-<<<<<<< HEAD
         </FormLabel>
         <FormLabel
           width='312px'>
@@ -148,16 +131,6 @@ const InputProduct = ({ handleClick, text,sets }) => {
         </FormLabel>
         <FormLabel
           width='312px'>
-=======
-        </label>
-        Unidade de Medida:
-        <input
-          type="text"
-          onChange={(e) => setUn(e.target.value)}
-          value={un}
-        />
-        <label>
->>>>>>> 60a5287fc6fd64bd841b33e565114d5f77349696
           Fabricante:
           <Input
             type="text"
@@ -181,7 +154,6 @@ const InputProduct = ({ handleClick, text,sets }) => {
             type="url"
             onChange={(e) => setImagem(e.target.value)}
             value={imagem} />
-<<<<<<< HEAD
         </FormLabel>
         {error && <p>{error}</p>}
         <FormControl
@@ -189,18 +161,6 @@ const InputProduct = ({ handleClick, text,sets }) => {
           justifyContent="space-between">
           <Button alignSelf="flex-end" type='button' onClick={handleClickForm}>{text}</Button>
         </FormControl>
-=======
-        </label>
-        <label>
-          <input type="hidden" value={id} />
-        </label>
-        <label>
-          <input type="hidden" value={createdAt} />
-        </label>
-        {error && <p className={styles.error}>{error}</p>}
-        <button type='button' onClick={handleClickForm}>{text}</button>
-
->>>>>>> 60a5287fc6fd64bd841b33e565114d5f77349696
       </form>
 
     </Flex>
