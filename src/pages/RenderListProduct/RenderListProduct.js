@@ -12,7 +12,11 @@ import {
     FormControl,
     Flex,
     FormLabel,
-    Heading
+    Heading,
+    Image,
+    background,
+    Box,
+    Spacer,
 } from '@chakra-ui/react'
 
 import React, { useEffect, useState } from "react";
@@ -23,7 +27,7 @@ import axios from "axios";
 import { BsFillGridFill } from 'react-icons/bs';
 import { RiDeleteBin7Fill } from 'react-icons/ri';
 import { FaListUl } from 'react-icons/fa'
-import { AiFillEdit } from 'react-icons/ai'
+import { FiEdit } from 'react-icons/fi'
 import { Link } from "react-router-dom";
 
 const RenderListProduct = () => {
@@ -71,7 +75,7 @@ const RenderListProduct = () => {
     }
 
     return (
-        <>
+        <Box>
 
             <Heading>Produtos:</Heading>
             <Flex>
@@ -95,9 +99,12 @@ const RenderListProduct = () => {
                     </FormLabel>
                 </FormControl>
 
-
             </Flex>
-            <Table>
+            <Table
+            border='1px solid black'
+            borderRadius='lg'
+            pd='5px'
+            >
                 <Thead>
                     <Tr>
                         <Th >Imagem</Th>
@@ -110,22 +117,37 @@ const RenderListProduct = () => {
                     </Tr>
                 </Thead>
 
-                <Tbody >
+                <Tbody
+                    >
                     {produtos.map(produto => (
-                        <Tr key={produto.id}>
-                            <Td><img src={produto.imagemProduto} alt="Imagem do Produto" /></Td>
+                        <Tr
+                            key={produto.id}
+                            _hover={{
+                                bg: 'cyan.400',
+                                color: 'white',
+                                borderRadius: "lg",
+                            }}
+                        >
+                            <Td><Image src={produto.imagemProduto} alt="Imagem do Produto" h='64px' w='64px' /></Td>
                             <Td>{produto.nome}</Td>
                             <Td>{produto.valorVenda}</Td>
                             <Td>{produto.referencia}</Td>
                             <Td>{produto.fabricante}</Td>
                             <Td>{produto.estoque} {produto.unidadeMedida}</Td>
-                            <Td><RiDeleteBin7Fill onClick={() => deleteProdutos(produto.id)} className="imagem-acao" /> <Link to={`/Produtos/Editar_Produto/${produto.id}`}><AiFillEdit className="imagem-acao" /></Link> </Td>
+                            <Td><Flex alignItems="center">
+                                <RiDeleteBin7Fill style={{ width: '22px', height: '22px', color: 'red', pd:'5px', cursor: 'pointer' }} onClick={() => deleteProdutos(produto.id)} />
+                                <Spacer/>
+                                <Link to={`/Produtos/Editar_Produto/${produto.id}`}>
+                                    <FiEdit style={{ width: '22px', height: '22px', color: 'brown', margin:'5px' }} />
+                                </Link>
+                                </Flex>
+                            </Td>
                         </Tr>
                     ))}
                 </Tbody>
 
             </Table>
-        </>
+        </Box>
     )
 }
 

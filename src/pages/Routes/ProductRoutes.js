@@ -24,7 +24,8 @@ const ProductRoutes = () => {
                 <GridItem rowSpan={1} colSpan={2}>
                     <Header />
                 </GridItem>
-                <GridItem rowSpan={1} colSpan={1} bg = ' #B8D6FF ' border='1px solid ' borderRadius='8px'>
+                <GridItem rowSpan={1} colSpan={1} bg = ' #B8D6FF ' border='1px solid ' borderRadius='0 8px 8px 0'
+                >
                     <Navbar/>
                 </GridItem>
               

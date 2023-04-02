@@ -1,22 +1,25 @@
 import React from 'react'
 import axios from 'axios'
 import InputProduct from '../components/InputProduct'
-import { Heading } from '@chakra-ui/react'
+import { Box, Heading } from '@chakra-ui/react'
 
 const CreateProduct = () => {
     const text = "Enviar"
+    const url = "https://homologacao.windel.com.br:3000/teste-front"
 
-    function handleClickCreate({ produto }) {
-        console.log(produto)
-        // axios.post(url, produto)
-        //   .then(response => {
-        //     console.log(produto)
-        //     console.log(response)
-        //   })
-        //   .catch(error => console.log(error))
-    }
+    const handleClickCreate = ({ produto }) => {
+        const create = produto
+         axios.post(url, create)
+           .then(response => {
+           console.log(produto)
+           console.log(response)
+          })
+          .catch(error => console.log(error))
+          
+     }
     return (
-        <>
+        <Box
+        margin='10px'>
 
             <Heading>Crie seu produto:</Heading>
             <InputProduct
@@ -24,7 +27,7 @@ const CreateProduct = () => {
                 handleClick={handleClickCreate}
 
             />
-        </>
+        </Box>
 
 
     )

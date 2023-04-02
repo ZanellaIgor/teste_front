@@ -1,8 +1,8 @@
-import { FormLabel, Input, Box, FormControl, Button } from '@chakra-ui/react'
-import { useState } from 'react'
+import { FormLabel, Input, Box, FormControl, Button, Grid, Flex, Spacer } from '@chakra-ui/react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
-
-const InputProduct = ({ handleClick, text }) => {
+const InputProduct = ({ handleClick, text, alterarProduto }) => {
 
   const [descProduto, setDescProduto] = useState("")
   const [vlrVenda, setVlrVenda] = useState("")
@@ -12,6 +12,17 @@ const InputProduct = ({ handleClick, text }) => {
   const [estoqueProduto, setEstoqueProduto] = useState("")
   const [imagem, setImagem] = useState("")
 
+  const alterarStates = (produto) => {
+    alterarProduto()
+    setDescProduto(produto.nome)
+    setVlrVenda(produto.valorVenda)
+    setRefProduto(produto.referencia)
+    setUn(produto.unidadeMedida)
+    setFabProduto(produto.fabricante)
+    setEstoqueProduto(produto.estoque)
+    setImagem(produto.imagemProduto)
+
+  }
   //error
   const [error, setError] = useState("");
 
@@ -46,65 +57,60 @@ const InputProduct = ({ handleClick, text }) => {
     }
 
     handleClick({ produto })
-
-    // axios.post(url, produto)
-    //   .then(response => {
-    //     console.log(produto)
-    //     console.log(response)
-
-    //   })
-    //   .catch(error => console.log(error))
-
   }
 
   return (
-    <Box>
-      <form>
-        <FormControl>
-          <FormLabel>
-            Descrição do Produto:
-            <Input
-              type="text"
-              onChange={(e) => setDescProduto(e.target.value)}
-              value={descProduto}
-              required
-            />
-          </FormLabel>
-        </FormControl>
-        <FormControl>
-          <FormLabel>
-            Valor de Venda:
-            <Input type="number"
-              step="0.01"
-              onChange={(e) => setVlrVenda(e.target.value)}
-              value={vlrVenda}
-              required
-            />
-          </FormLabel>
-        </FormControl>
-        <FormControl>
-          <FormLabel>
-            Referência:
-            <Input
-              type="text"
-              onChange={(e) => setRefProduto(e.target.value)}
-              value={refProduto}
-            />
-          </FormLabel>
-        </FormControl>
-        <FormControl>
+    <Flex
+      flexDirection='column'
+      padding='10px'
+    //justify-content= 'space-between'
+    >
 
-          <FormLabel>
-            Unidade de Medida:
-            <Input
-              type="text"
-              onChange={(e) => setUn(e.target.value)}
-              value={un}
-              required
-            />
-          </FormLabel>
-        </FormControl>
-        <FormLabel>
+      <form
+        style={{ display: "flex", flexWrap: "wrap", alignItems: 'space-around' }}>
+
+        <FormLabel
+          width='312px'
+        >
+          Descrição do Produto:
+          <Input
+            type="text"
+            onChange={(e) => setDescProduto(e.target.value)}
+            value={descProduto}
+            required
+          />
+        </FormLabel>
+        <FormLabel
+          width='312px'>
+          Valor de Venda:
+          <Input type="number"
+            step="0.01"
+            onChange={(e) => setVlrVenda(e.target.value)}
+            value={vlrVenda}
+            required
+          />
+        </FormLabel>
+        <FormLabel
+          width='312px'>
+          Referência:
+          <Input
+            type="text"
+            onChange={(e) => setRefProduto(e.target.value)}
+            value={refProduto}
+          />
+        </FormLabel>
+        <FormLabel
+          width='312px'>
+          Unidade de Medida:
+          <Input
+            type="text"
+            onChange={(e) => setUn(e.target.value)}
+            value={un}
+            required
+          />
+        </FormLabel>
+        <FormLabel
+          width='312px'>
           Fabricante:
           <Input
             type="text"
@@ -112,28 +118,32 @@ const InputProduct = ({ handleClick, text }) => {
             value={fabProduto}
           />
         </FormLabel>
-        <FormControl>
-          <FormLabel>
-            Estoque Atual:
-            <Input
-              type="number"
-              onChange={(e) => setEstoqueProduto(e.target.value)}
-              value={estoqueProduto}
-            />
-          </FormLabel>
-        </FormControl>
-        <FormControl>
-          <FormLabel>Informe o Link da Imagem:
-            <Input
-              type="url"
-              onChange={(e) => setImagem(e.target.value)}
-              value={imagem} />
-          </FormLabel>
-        </FormControl>
+        <FormLabel
+          width='312px'>
+          Estoque Atual:
+          <Input
+            type="number"
+            onChange={(e) => setEstoqueProduto(e.target.value)}
+            value={estoqueProduto}
+          />
+        </FormLabel>
+        <FormLabel
+          width='635px'
+        >Informe o Link da Imagem:
+          <Input
+            type="url"
+            onChange={(e) => setImagem(e.target.value)}
+            value={imagem} />
+        </FormLabel>
         {error && <p>{error}</p>}
-        <Button type='button' onClick={handleClickForm}>{text}</Button>
+        <FormControl
+          display='flex'
+          justifyContent="space-between">
+          <Button alignSelf="flex-end" type='button' onClick={handleClickForm}>{text}</Button>
+        </FormControl>
       </form>
-    </Box>
+
+    </Flex>
   )
 }
 
