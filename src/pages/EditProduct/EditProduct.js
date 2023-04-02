@@ -14,14 +14,17 @@ const EditProduct = () => {
     const [estoqueProduto, setEstoqueProduto] = useState("");
     const [imagem, setImagem] = useState("");
 
+    //não funciona
     function editValueInputs(produtos) {
-        setDescProduto(produtos.descProduto);
-        setVlrVenda(produtos.vlrVenda);
-        setRefProduto(produtos.refProduto);
-        setUn(produtos.un);
-        setFabProduto(produtos.fabProduto);
-        setEstoqueProduto(produtos.estoqueProduto);
-        setImagem(produtos.imagem);
+        console.log(produtos)
+        const produto = produtos
+        setDescProduto(produto.nome)
+        setVlrVenda(produto.valorVenda)
+        setRefProduto(produto.referencia)
+        setUn(produto.unidadeMedida)
+        setFabProduto(produto.fabricante)
+        setEstoqueProduto(produto.estoque)
+        setImagem(produto.imagemProduto)
     }
     const { id } = useParams();
 
@@ -30,14 +33,11 @@ const EditProduct = () => {
     const handleClick = () => {
         console.log("esta no edit")
     }
-
     useEffect(() => {
         axios.get(`${baseURL}/${id}`)
             .then((response) => {
                 const produtos = response.data
                 editValueInputs(produtos)
-                console.log(response.data)
-                
             })
             .catch((error) => {
                 console.error(error);
@@ -61,7 +61,7 @@ const EditProduct = () => {
             <InputProduct
                 text={text}
                 evento={handleClick}
-                alterarProduto={editValueInputs}
+                product={editValueInputs()}
             />
         </>
     )

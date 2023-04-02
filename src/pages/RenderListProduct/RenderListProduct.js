@@ -61,19 +61,6 @@ const RenderListProduct = () => {
         }
     }
 
-    //Alterar produto
-    function alterarProduto(id) {
-        alert("Função não habilitada")
-
-        axios.patch(`${baseURL}/${id}`, produtos)
-            .Then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-
     return (
         <Box>
 
@@ -101,9 +88,9 @@ const RenderListProduct = () => {
 
             </Flex>
             <Table
-                border='1px solid black'
-                borderRadius='lg'
-                pd='5px'
+            border='1px solid black'
+            borderRadius='lg'
+            pd='5px'
             >
                 <Thead>
                     <Tr>
@@ -118,7 +105,7 @@ const RenderListProduct = () => {
                 </Thead>
 
                 <Tbody
-                >
+                    >
                     {produtos.map(produto => (
                         <Tr
                             key={produto.id}
@@ -135,12 +122,12 @@ const RenderListProduct = () => {
                             <Td>{produto.fabricante}</Td>
                             <Td>{produto.estoque} {produto.unidadeMedida}</Td>
                             <Td><Flex alignItems="center">
-                                <Link to={`/Produtos/Editar_Produto/${produto.id}`}>
-                                    <FiEdit style={{ width: '22px', height: '22px', color: 'brown', margin: '5px' }} />
+                            <Link to={`/Produtos/Editar_Produto/${produto.id}`}>
+                                    <FiEdit style={{ width: '22px', height: '22px', color: 'brown', margin:'5px' }} />
                                 </Link>
-                                <RiDeleteBin7Fill style={{ width: '22px', height: '22px', color: 'red', pd: '5px', cursor: 'pointer' }} onClick={() => deleteProdutos(produto.id)} />
-                                <Spacer />
-                            </Flex>
+                                <RiDeleteBin7Fill style={{ width: '22px', height: '22px', color: 'red', pd:'5px', cursor: 'pointer' }} onClick={() => deleteProdutos(produto.id)} />
+                                <Spacer/>
+                                </Flex>
                             </Td>
                         </Tr>
                     ))}

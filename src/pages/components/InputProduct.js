@@ -1,8 +1,7 @@
 import { FormLabel, Input, Box, FormControl, Button, Grid, Flex, Spacer } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 
-const InputProduct = ({ handleClick, text, alterarProduto }) => {
+const InputProduct = ({ handleClick, text, alterarStates }) => {
   
   const [descProduto, setDescProduto] = useState("")
   const [vlrVenda, setVlrVenda] = useState("")
@@ -13,8 +12,9 @@ const InputProduct = ({ handleClick, text, alterarProduto }) => {
   const [imagem, setImagem] = useState("")
 
 
-  const alterarStates = (produto) => {
-    alterarProduto()
+  function alterarStates(){
+    console.log('prd')
+    console.log(produto)
     setDescProduto(produto.nome)
     setVlrVenda(produto.valorVenda)
     setRefProduto(produto.referencia)
@@ -22,8 +22,8 @@ const InputProduct = ({ handleClick, text, alterarProduto }) => {
     setFabProduto(produto.fabricante)
     setEstoqueProduto(produto.estoque)
     setImagem(produto.imagemProduto)
-
   }
+  
   //error
   const [error, setError] = useState("");
 
@@ -32,18 +32,7 @@ const InputProduct = ({ handleClick, text, alterarProduto }) => {
   const [id, setId] = useState("")
   const [createdAt, setCreatedAt] = useState("");
 
-  function sets(produto) {
-    setDescProduto(produto.nome);
-    setVlrVenda();
-    setRefProduto();
-    setUn();
-    setFabProduto();
-    setEstoqueProduto();
-    setImagem();
-    setId();
-    setCreatedAt();
-    setError();
-  }
+  
   const produto = {
     id,
     createdAt,
@@ -55,7 +44,6 @@ const InputProduct = ({ handleClick, text, alterarProduto }) => {
     estoque: parseInt(estoqueProduto),
     imagemProduto: imagem,
   }
-
 
   const handleClickForm = () => {
     setError("")
@@ -85,9 +73,7 @@ const InputProduct = ({ handleClick, text, alterarProduto }) => {
     <Flex
       flexDirection='column'
       padding='10px'
-    //justify-content= 'space-between'
     >
-
       <form
         style={{ display: "flex", flexWrap: "wrap", alignItems: 'space-around' }}>
 
